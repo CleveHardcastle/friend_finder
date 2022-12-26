@@ -1,0 +1,21 @@
+{
+  "name": "friend_finder",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/CleveHardcastle/friend_finder.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/CleveHardcastle/friend_finder/issues"
+  },
+  "homepage": "https://github.com/CleveHardcastle/friend_finder#readme"
+}
