@@ -1,0 +1,26 @@
+[
+  {
+    "email":"john1@gmail.com",
+    "first_name": "John",
+    "last_name": "One",
+    "password": "john1"
+  },
+  {
+    "email":"john2@yahoo.com",
+    "first_name": "John",
+    "last_name": "Two",
+    "password": "john2"
+  },
+  {
+    "email":"John3@hotmail.com",
+    "first_name": "John",
+    "last_name": "Three",
+    "password": "john3"
+  },
+  {
+    "email":"John4@gmail.com",
+    "first_name": "John",
+    "last_name": "Four",
+    "password": "john4"
+  }
+]
