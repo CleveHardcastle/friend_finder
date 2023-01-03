@@ -1,6 +1,17 @@
 const router = require('express').Router();
 const { Category, Interest, User } = require('../models');
 
+// This has to be above the id get, prob should move to own file
+router.get('/categories', async (req, res) => {
+    try {
+        const categoryData = await Category.findAll();
+        const category = categoryData.map((category) => category.get({plain: true}));
+        return res.json(category);
+    } catch (err) {
+        res.status(404).json(err);
+    }
+});
+
 router.get('/:id', async (req, res) => {
     try {
         const userData = await User.findByPk(req.params.id, {
@@ -74,6 +85,7 @@ router.put('/interest/:id', async (req, res) => {
     } catch (err) {
         res.status(500).json(err);
     }
-})
+});
+
 
 module.exports = router;
