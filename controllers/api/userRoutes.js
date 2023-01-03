@@ -46,15 +46,9 @@ router.put('/:id', async (req, res) => {
 
 router.post('/', async (req, res) => {
     try {
-        const newUser = await User.create({
-            email: req.body.email,
-            first_name: req.body.first_name,
-            last_name: req.body.last_name,
-            password: req.body.password,
-            description: req.body.description,
-            gender: req.body.gender,
-            age: req.body.age
-        });
+        const newUser = await User.create(
+            req.body
+        );
 
         req.session.save(() => {
             req.session.userId = newUser.id;
