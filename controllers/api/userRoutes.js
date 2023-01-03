@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const { Category, Interest, User } = require('../models');
+const { Category, Interest, User } = require('../../models');
 
 router.get('/:id', async (req, res) => {
     try {
@@ -7,7 +7,7 @@ router.get('/:id', async (req, res) => {
             include: [
                 {
                     model: Interest,
-                    attributes: ['body'],
+                    attributes: ['id','body'],
                     include: [
                         {
                             model: Category,
@@ -43,3 +43,5 @@ router.put('/:id', async (req, res) => {
         res.status(500).json(err);
     }
 });
+
+module.exports = router;
