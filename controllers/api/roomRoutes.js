@@ -1,5 +1,4 @@
 const room = require('express').Router();
-const e = require('express');
 const { Room } = require('../../models');
 
 room.post('/', async (req, res) => {
