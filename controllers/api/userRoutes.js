@@ -46,9 +46,7 @@ router.put('/:id', async (req, res) => {
 
 router.post('/', async (req, res) => {
     try {
-        const newUser = await User.create(
-            req.body
-        );
+        const newUser = await User.create(req.body);
 
         req.session.save(() => {
             req.session.userId = newUser.id;

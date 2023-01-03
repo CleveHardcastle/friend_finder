@@ -1,5 +1,6 @@
 const message = require('express').Router();
-const { Message, Room, User } = require('../../models');
+const { Message } = require('../../models');
+const withAuth = require('../../utils/auth')
 
 message.get('/', async (req, res) => {
   try {
@@ -10,9 +11,9 @@ message.get('/', async (req, res) => {
   }
 })
 
-message.post('/', async (req, res) => {
+message.post('/', withAuth, async (req, res) => {
   try {
-    const newMessage = await Message.create( { ...req.body, user_id: req.session.user_id });
+    const newMessage = await Message.create( { ...req.body, user_id: req.session.userId });
     res.status(200).json(newMessage);
   } catch(err) {
     console.err(err);
@@ -20,7 +21,7 @@ message.post('/', async (req, res) => {
   }
 });
 
-message.put('/:id', async (req, res) => {
+message.put('/:id', withAuth, async (req, res) => {
   try {
     const [rowsAffected] = await Message.update(req.body, { where: { id: req.params.id }});
 
