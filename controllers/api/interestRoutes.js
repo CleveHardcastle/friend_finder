@@ -1,11 +1,13 @@
 const router = require('express').Router();
-const { Category, Interest, User } = require('../models');
+const { Category, Interest, User } = require('../../models');
+const withAuth = require('../../utils/auth')
 
-router.post('/:id', async (req, res) => {
+
+router.post('/', withAuth, async (req, res) => {
     try {
         const interestData = await Interest.create({ 
             ...req.body, 
-            user_id: req.params.id 
+            user_id: req.session.userId
         });
         res.json(interestData);
 
@@ -15,7 +17,7 @@ router.post('/:id', async (req, res) => {
 });
 
 //update interest (interest id)
-router.put('/interest/:id', async (req, res) => {
+router.put('/:id', withAuth, async (req, res) => {
     try {
         const [affectedRows] = await Interest.update(req.body, {
             where: {

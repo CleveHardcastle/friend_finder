@@ -1,17 +1,18 @@
 const room = require('express').Router();
 const { Room } = require('../../models');
+const withAuth = require('../../utils/auth')
 
-room.post('/', async (req, res) => {
+room.post('/', withAuth, async (req, res) => {
   try {
-    const newRoom = await Room.create({ ...req.body,  creator_id: req.session.user_id });
-    res.status(200).json(newRooms);
+    const newRoom = await Room.create({ ...req.body,  creator_id: req.session.userId });
+    res.status(200).json(newRoom);
   } catch (err) {
     console.log(err);
     res.status(400).json(err);
   }
 });
 
-room.put('/:id', async (req, res) => {
+room.put('/:id', withAuth, async (req, res) => {
   try {
     const [rowsAffected] = await Room.update(req.body, { where: { id: req.params.id }});
 
@@ -25,7 +26,7 @@ room.put('/:id', async (req, res) => {
   }
 })
 
-room.delete('/:id', async (req, res) => {
+room.delete('/:id', withAuth, async (req, res) => {
   try {
     const rowsAffected = await Room.destroy({ where: { id: req.params.id }});
 
