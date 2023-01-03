@@ -12,20 +12,20 @@ const routes = require('./controllers');
 const app = express();
 const PORT = process.env.PORT || 3001;
 
-// const sess = {
-//   secret: 'Super secret secret',
-//   cookie: {
-//     // login session expires in 10 minutes
-//     maxAge: 600000,
-//     httpOnly: true,
-//     secure: false,
-//     sameSite: 'strict',
-//   },
-//   resave: false,
-//   saveUninitialized: false,
-// };
+const sess = {
+  secret: 'Super secret secret',
+  cookie: {
+    // login session expires in 10 minutes
+    maxAge: 3600000,
+    httpOnly: true,
+    secure: false,
+    sameSite: 'strict',
+  },
+  resave: false,
+  saveUninitialized: false,
+};
 
-// app.use(session(sess));
+app.use(session(sess));
 
 app.engine('handlebars', hbs.engine);
 app.set('view engine','handlebars');

@@ -1,5 +1,5 @@
 const message = require('express').Router();
-const { Message, Room, User } = require('../../models');
+const { Message } = require('../../models');
 
 message.get('/', async (req, res) => {
   try {
