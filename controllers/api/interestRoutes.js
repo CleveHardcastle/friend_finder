@@ -1,5 +1,6 @@
 const router = require('express').Router();
-const { Category, Interest, User } = require('../models');
+const { Category, Interest, User } = require('../../models');
+
 
 router.post('/:id', async (req, res) => {
     try {
@@ -15,7 +16,7 @@ router.post('/:id', async (req, res) => {
 });
 
 //update interest (interest id)
-router.put('/interest/:id', async (req, res) => {
+router.put('/:id', async (req, res) => {
     try {
         const [affectedRows] = await Interest.update(req.body, {
             where: {
