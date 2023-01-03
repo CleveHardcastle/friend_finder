@@ -1,10 +1,11 @@
 const router = require('express').Router();
 const { roomMember, User } = require('../../models');
+const withAuth = require('../../utils/auth')
 
 // triggered when a logged in user joins a room
-router.put('/', async (req, res) => {
+router.post('/', withAuth, async (req, res) => {
   try {
-    const joinRoom = await roomMember.create({ ...req.body, member_id: req.session.user_id });
+    const joinRoom = await roomMember.create({ ...req.body, member_id: req.session.userId });
     res.status(200).json(joinRoom);
   } catch(err) {
     console.log(err);
@@ -12,9 +13,9 @@ router.put('/', async (req, res) => {
   }
 });
 
-router.delete('/:id', async (req, res) => {
+router.delete('/:id', withAuth, async (req, res) => {
   try {
-    const rowsAffected = await roomMember.destroy({ where: { room_id: req.params.id, user_id: req.session.user_id }});
+    const rowsAffected = await roomMember.destroy({ where: { room_id: req.params.id, member_id: req.session.userId }});
 
     if (rowsAffected > 0) {
       res.status(200).end();
