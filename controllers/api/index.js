@@ -1,7 +1,7 @@
 const router = require("express").Router();
 
-const messageRoutes = require("./messageRoutes");
-const roomRoutes = require("./roomRoutes");
+// const messageRoutes = require("./messageRoutes");
+// const roomRoutes = require("./roomRoutes");
 
 
 const messageRoutes = require('./messageRoutes');
