@@ -1,0 +1,24 @@
+{{!-- conditional edit button that shows if user logged in is owner of this profile page --}}
+{{#if owner}}
+<a href="/profile/edit/{{user.id}}" class="inline-block px-6 py-2.5 bg-blue-600 text-white font-medium text-xs rounded shadow-md">Edit</a>
+{{/if}}
+
+<p><strong>{{user.first_name}} {{user.last_name}}</strong></p>
+<p>{{user.gender}} | {{user.age}} | {{user.email}}</p>
+
+<h3><strong>ABOUT</strong></h3>
+<p>{{user.description}}</p>
+
+<h3><strong>INTERESTS</strong></h3>
+{{#if owner}}
+{{#each user.Interests as |interest|}}
+<div class="flex">
+  <p><strong>{{interest.Category.name}}</strong>: {{interest.body}}</p>
+</div>
+{{/each}}
+
+{{else}}
+{{#each user.Interests as |interest|}}
+<p><strong>{{interest.Category.name}}</strong>: {{interest.body}}</p>
+{{/each}}
+{{/if}}
