@@ -1,4 +1,4 @@
-const router = require('express').Router();
+const router = require("express").Router();
 
 const messageRoutes = require('./messageRoutes');
 const roomRoutes = require('./roomRoutes');
@@ -6,7 +6,6 @@ const userRoutes = require('./userRoutes');
 const interestRoutes = require('./interestRoutes');
 const categoryRoutes = require('./categoryRoutes');
 const roomMemberRoutes = require('./roomMemberRoutes');
-
 
 router.use('/message', messageRoutes);
 router.use('/room', roomRoutes);

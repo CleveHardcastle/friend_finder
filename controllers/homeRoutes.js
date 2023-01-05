@@ -1,26 +1,30 @@
 const router = require('express').Router();
 const { Room, User, roomMember } = require('../models');
-const room = require('./api/roomRoutes');
 
 router.get('/', async (req, res) => {
   try {
-    // if (req.session.loggedIn) {
-    //   const roomsData = await roomMember.findAll( { 
-    //     where: {
-    //       member_id: req.session.user_id
-    //     },
-    //     include: Room
-    //   });
+    // If user is logged in, render room user is in 
+    if (req.session.loggedIn) {
+      const roomsData = await Room.findAll({
+        attributes: ["id", "title", "description", "creator_id"],
+        include: [{ 
+          model: roomMember,
+          attributes: [],
+          where: {
+            member_id: req.session.userId
+          }
+        }],
+      });
 
-    //   const rooms = roomsData.map((room) => room.get({ plain: true }));
-    //   res.render('home', { rooms });
+      const rooms = roomsData.map((room) => room.get({ plain: true }));
+      res.render('allRooms', { rooms });
 
-    // } else {
-    const roomsData = await Room.findAll({ include: User });
-    const rooms = roomsData.map((room) => room.get({ plain: true }));
+    } else {
+      const roomsData = await Room.findAll({ include: User });
+      const rooms = roomsData.map((room) => room.get({ plain: true }));
 
-    res.render('allRooms', { rooms });
-    // }
+      res.render('allRooms', { rooms });
+    }
   } catch(err) {
     res.status(500).json(err);
   }
