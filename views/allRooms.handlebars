@@ -1,3 +1,5 @@
 {{#each rooms as |room|}}
 <p>{{room.title}}: {{room.description}}</p>
+<a href="/room/{{room.id}}">join room</a>
 {{/each}}
+<a href="/login">login here</a>

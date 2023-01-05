@@ -5,11 +5,9 @@ const { Message, Room, User } = require("../models");
 router.get("/", async (req, res) => {
   try {
     const room = await Room.findAll({
-      attributes: ["title", "description"],
-      inculde: [
+      include: [
         {
           model: Message,
-          attributes: ["text"],
         },
       ],
     });
@@ -19,21 +17,30 @@ router.get("/", async (req, res) => {
   }
 });
 
+
 router.get("/:id", async (req, res) => {
   try {
-    const room = await Room.findByPk(req.params.id, {
-      attributes: ["title", "description"],
-      inculde: [
+    const roomData = await Room.findByPk(req.params.id, {
+      include: [
         {
           model: Message,
-          attributes: ["text"],
+          include: [
+            {
+              model: User
+            }
+          ]
         },
       ],
     });
-    res.status(200).json(room);
+    const room = roomData.get({ plain: true });
+    const loggedIn = req.session.loggedIn;
+
+    res.render('room', { room, loggedIn });
   } catch (err) {
     res.status(500).json(err);
   }
 });
+
+
 
 module.exports = router;
