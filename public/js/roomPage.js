@@ -4,7 +4,6 @@ const messageCreationFormHandler = async function(event) {
     const messageText = document.querySelector('textarea[name="message-body"]').value;
     const roomId = document.querySelector('input[name="room-id"]').value;
 
-    console.log(messageText);
     if (messageText == '')
         return;
 
