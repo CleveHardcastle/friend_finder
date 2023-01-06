@@ -3,7 +3,7 @@ const Room = require('./Room');
 const Message = require('./Message');
 const Interest = require( './Interest');
 const Category = require('./Category');
-const roomMember = require('./roomMember')
+const roomMember = require('./roomMember');
 
 Interest.belongsTo(Category, {
   foreignKey: 'category_id',
@@ -16,11 +16,6 @@ Interest.belongsTo(User, {
 Room.belongsTo(User, {
   foreignKey: 'creator_id',
   onDelete: 'CASCADE'
-});
-
-Room.belongsToMany(User, {
-  through: roomMember,
-  foreignKey: 'room_id',
 });
 
 Room.hasMany(Message, {
@@ -39,8 +34,29 @@ User.hasMany(Room, {
   foreignKey: 'creator_id',
 });
 
-User.belongsToMany(Room, {
-  through: roomMember,
+// Room.belongsToMany(User, {
+//   through: roomMember,
+//   foreignKey: 'room_id',
+// });
+
+// User.belongsToMany(Room, {
+//   through: roomMember,
+//   foreignKey: 'member_id',
+// })
+
+Room.hasMany(roomMember, {
+  foreignKey: 'room_id',
+});
+
+User.hasMany(roomMember, {
+  foreignKey: 'member_id',
+});
+
+roomMember.belongsTo(Room, {
+  foreignKey: 'room_id',
+});
+
+roomMember.belongsTo(User, {
   foreignKey: 'member_id',
 });
 
