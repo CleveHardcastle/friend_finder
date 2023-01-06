@@ -39,7 +39,7 @@ router.post('/', async (req, res) => {
       res.status(200).json(newUser);
     })
   } catch (err) {
-    res.status(400).json(err);
+    res.status(400).json({err, message: 'Make sure there are no typos in the email, and password length is at least 8 characters.'});
   }
 });
 
