@@ -3,11 +3,11 @@ const express = require('express');
 const session = require('express-session');
 // import connection object
 const sequelize = require('./config/connection');
-// const helpers = require('./utils/heplers')
+const helpers = require('./utils/helpers')
 const routes = require('./controllers');
 
 const exphbs = require('express-handlebars');
-const hbs = exphbs.create();
+const hbs = exphbs.create({ helpers });
 
 const app = express();
 const PORT = process.env.PORT || 3001;

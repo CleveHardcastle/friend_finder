@@ -29,7 +29,7 @@ router.get("/:id", async (req, res) => {
 router.get("/edit/:id", withAuth, async (req, res) => {
   try {
     const userData = await User.findByPk(req.params.id, {
-      attributes: ["first_name", "last_name", "gender", "age"],
+      attributes: ["id", "first_name", "last_name", "gender", "age"],
       include: [
         {
           model: Interest,
@@ -41,10 +41,15 @@ router.get("/edit/:id", withAuth, async (req, res) => {
         },
       ],
     });
-    
-    const user = userData.get({ plain: true });
 
-    res.render('editProfile', { user })
+    const categoryData = await Category.findAll({attributes: ["id", "name"]});
+
+    const user = userData.get({ plain: true });
+    const categories = categoryData.map((category) => category.get({ plain: true }));
+    const genderOptions = ["Female", "Male", "Non-binary/Non-conforming", "Prefer not to respond"];
+
+    res.render('editProfile', { user, categories, genderOptions })
+    // res.json({ userData, categoryData})
   } catch (err) {
     res.status(500).json(err);
   }
