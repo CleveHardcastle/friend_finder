@@ -8,5 +8,15 @@
     "title": "Rock Climbing",
     "description": "You love rock climbing? me too, happy famly ",
     "creator_id": 2
+  },
+  {
+    "title": "test1",
+    "description": "You love rock climbing? me too, happy famly ",
+    "creator_id": 2
+  },
+  {
+    "title": "test2",
+    "description": "You love rock climbing? me too, happy famly ",
+    "creator_id": 2
   }
 ]
