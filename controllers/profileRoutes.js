@@ -31,8 +31,10 @@ router.get("/:id", async (req, res) => {
     const user = userData.get({ plain: true });
     const rooms = roomsData.map((room) => room.get({ plain: true }));
     const owner = (req.session.userId == req.params.id);
+    const loggedIn = req.session.loggedIn;
+    const userId = loggedIn ? req.session.userId : null;
 
-    res.render('userProfile', { user, rooms, owner });
+    res.render('userProfile', { user, rooms, owner, loggedIn, userId });
   } catch (err) {
     res.status(500).json(err);
   }
@@ -59,9 +61,10 @@ router.get("/edit/:id", withAuth, async (req, res) => {
     const user = userData.get({ plain: true });
     const categories = categoryData.map((category) => category.get({ plain: true }));
     const genderOptions = ["Female", "Male", "Non-binary/Non-conforming", "Prefer not to respond"];
+    const loggedIn = true;
+    const userId = req.session.userId;
 
-    res.render('editProfile', { user, categories, genderOptions })
-    // res.json({ userData, categoryData})
+    res.render('editProfile', { user, categories, genderOptions, loggedIn, userId });
   } catch (err) {
     res.status(500).json(err);
   }

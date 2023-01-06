@@ -5,7 +5,7 @@ router.get('/', async (req, res) => {
   try {
     // If user is logged in, render room user is in 
     if (req.session.loggedIn) {
-      const roomsData = await Room.findAll({
+      let roomsData = await Room.findAll({
         attributes: ["id", "title", "description", "creator_id"],
         include: [{ 
           model: roomMember,
@@ -16,14 +16,20 @@ router.get('/', async (req, res) => {
         }],
       });
 
+      if ( roomsData.length === 0 ){
+        roomsData = await Room.findAll({ include: User });
+      }
+
+      const loggedIn = true;
+      const userId = req.session.userId;
       const rooms = roomsData.map((room) => room.get({ plain: true }));
-      res.render('allRooms', { rooms });
+      res.render('allRooms', { rooms, loggedIn, userId });
 
     } else {
       const roomsData = await Room.findAll({ include: User });
       const rooms = roomsData.map((room) => room.get({ plain: true }));
-
-      res.render('allRooms', { rooms });
+      const loggedIn = false;
+      res.render('allRooms', { rooms, loggedIn }); 
     }
   } catch(err) {
     res.status(500).json(err);
@@ -34,14 +40,16 @@ router.get('/login', (req, res) => {
   if (req.session.loggedIn) {
     res.redirect('/');
   }
-  res.render('login');
+  const loggedIn = false;
+  res.render('login', { loggedIn });
 });
 
 router.get('/signup', (req, res) => {
   if (req.session.loggedIn) {
     res.redirect('/');
   }
-  res.render('signup');
+  const loggedIn = false;
+  res.render('signup', { loggedIn });
 });
 
 router.get('/dashboard', async (req, res) => {
@@ -54,8 +62,10 @@ router.get('/dashboard', async (req, res) => {
         where: { creator_id: req.session.userId }
       })
       const rooms = roomData.map((room) => room.get({ plain: true }));
+      const userId = req.session.userId
+      const loggedIn = true
       
-      res.render('dashboard', { rooms });
+      res.render('dashboard', { rooms, loggedIn, userId });
     } catch (err) {
       res.status(500).json(err);
     }
