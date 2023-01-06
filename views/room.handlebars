@@ -1,4 +1,5 @@
 <p>{{room.title}}: {{room.description}}</p>
+<button type="button" id="join-room">Join Room</button>
 <ul>
 {{#each room.Messages as |message| }}
 <li>{{message.User.first_name}}: {{message.text}}
@@ -7,10 +8,14 @@
 {{/each}}
 </ul>
 
+<input type="hidden" name="is-loggedIn" value="{{loggedIn}}" />
+<input type="hidden" name="userId" value="{{userId}}" />
+<input type="hidden" name="room-id" value="{{room.id}}" />
+
+<form id="message-creation-form">    
 {{#if loggedIn}}
-<form id="message-creation-form">     
+{{#if joined}}
     <div class="mb-6">
-        <input type="hidden" name="room-id" value="{{room.id}}" />
         <label class="form-label" for="message-body">New Message</label>
         <textarea name="message-body" class="form-input"></textarea>
     </div>
@@ -20,7 +25,8 @@
         Post
     </button>
     </div>
-</form>
 {{/if}}
+{{/if}}
+</form>
 
 <script src="/js/roomPage.js"></script>

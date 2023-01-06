@@ -1,3 +1,8 @@
+const roomId = document.querySelector('input[name="room-id"]').value;
+const loggedIn = document.querySelector('input[name="is-loggedIn"]').value;
+const userId = document.querySelector('input[name="userId"]').value;
+
+
 const messageCreationFormHandler = async function(event) {
     event.preventDefault();
 
@@ -23,4 +28,20 @@ const messageCreationFormHandler = async function(event) {
     }
 };
 
+const joinRoomHandler = async function(event) {
+    if (loggedIn){
+        const response = await fetch('/api/room-member', {
+          method: 'POST',
+          body: JSON.stringify({
+            member_id: userId,
+            room_id: roomId
+          }),
+          headers: { 'Content-Type': 'application/json' }
+        });
+        document.location.reload();
+      }
+
+}
+
+document.querySelector('#join-room').addEventListener('click', joinRoomHandler);
 document.querySelector('#message-creation-form').addEventListener('submit', messageCreationFormHandler);
