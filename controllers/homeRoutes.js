@@ -1,11 +1,11 @@
-const router = require('express').Router();
-const { Room, User, roomMember } = require('../models');
-const room = require('./api/roomRoutes');
+const router = require("express").Router();
+const { Room, User, roomMember } = require("../models");
+const room = require("./api/roomRoutes");
 
-router.get('/', async (req, res) => {
+router.get("/", async (req, res) => {
   try {
     // if (req.session.loggedIn) {
-    //   const roomsData = await roomMember.findAll( { 
+    //   const roomsData = await roomMember.findAll( {
     //     where: {
     //       member_id: req.session.user_id
     //     },
@@ -19,25 +19,29 @@ router.get('/', async (req, res) => {
     const roomsData = await Room.findAll({ include: User });
     const rooms = roomsData.map((room) => room.get({ plain: true }));
 
-    res.render('allRooms', { rooms });
+    res.render("allRooms", { rooms });
     // }
-  } catch(err) {
+  } catch (err) {
     res.status(500).json(err);
   }
 });
 
-router.get('/login', (req, res) => {
+router.get("/login", (req, res) => {
   if (req.session.loggedIn) {
-    res.redirect('/');
+    res.redirect("/");
   }
-  res.render('login');
+  res.render("login");
 });
 
-router.get('/signup', (req, res) => {
+router.get("/signup", (req, res) => {
   if (req.session.loggedIn) {
-    res.redirect('/');
+    res.redirect("/");
   }
-  res.render('signup');
+  res.render("signup");
+});
+
+router.get("/about", (req, res) => {
+  res.render("about");
 });
 
 module.exports = router;

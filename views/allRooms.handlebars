@@ -1,6 +1,23 @@
-{{#each rooms as |room|}}
-  <div class="border-[#494B50] bg-[#494B50] w-full md:w-11/12 h-[239px] p-4 m-3">
-  <p class="text-2xl underline">{{room.title}}:</p> 
-  <p class="text-center">{{room.description}}</p>
+
+<div class="mt-16 m-4">
+  <div class="columns-1 md:columns-2">
+    <div class="md:h-[448px] flex items-center justify-center">
+      <div>
+        <h2 class="text-[26px] font-bold">Find people like you
+          <br>and make friending simpler and easier
+        </h2>
+        <p class="text-[#BBBBBB]">the best online socializing platform you will find.</p>
+      </div>
+    </div>
+    <img class="lg:h-[448px] md:w-[394px]" src="images/image.png" alt="Two women and one man hugging">
   </div>
-{{/each}}
+  <p class="text-[35px] text-center font-bold underline decoration-blue-400">Browse Chat Rooms</p>
+  <main class="place-items-center grid grid-cols-1 lg:grid-cols-2">  
+  {{#each rooms as |room|}}
+    <div class="border-[#494B50] bg-[#494B50] w-full md:w-11/12 h-[239px] p-4 m-3">
+    <p class="text-2xl underline">{{room.title}}:</p> 
+    <p class="text-center">{{room.description}}</p>
+    </div>
+  {{/each}}
+  </main>
+</div>
