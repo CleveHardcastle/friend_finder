@@ -64,6 +64,36 @@ router.get("/:id", async (req, res) => {
   }
 });
 
+router.get('/edit/:id', async (req,res) => {
+  try {
+    const roomData = await Room.findByPk(req.params.id, {
+      include: [
+        {
+          model: Message,
+          include: [
+            {
+              model: User
+            }
+          ]
+        },
+        {
+          model: roomMember,
+          include: [{
+            model: User
+          }]
+        }
+      ]
+    })
+
+    const room = roomData.get({ plain: true });
+
+    res.render('editRoom', { room });
+
+  } catch (err) {
+    res.status(500).json(err);
+  }
+});
+
 
 
 module.exports = router;

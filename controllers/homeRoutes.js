@@ -47,21 +47,20 @@ router.get('/signup', (req, res) => {
 router.get('/dashboard', async (req, res) => {
   if (!req.session.loggedIn) {
     res.redirect('/');
-  }
-
-  try {
-    const roomData = await Room.findAll({
-      include: User,
-      where: { creator_id: req.session.userId }
-    })
-    const rooms = roomData.map((room) => room.get({ plain: true }));
-    
-    res.render('dashboard', { rooms });
-  } catch (err) {
-    res.status(500).json(err);
-  }
-
+  } else {
+    try {
+      const roomData = await Room.findAll({
+        include: User,
+        where: { creator_id: req.session.userId }
+      })
+      const rooms = roomData.map((room) => room.get({ plain: true }));
+      
+      res.render('dashboard', { rooms });
+    } catch (err) {
+      res.status(500).json(err);
+    }
   
-})
+  }
+});
 
 module.exports = router;

@@ -2,7 +2,7 @@
 {{#each rooms as |room|}}
 <p>{{room.title}}: {{room.description}}</p>
 <a href="/room/{{room.id}}">go to room</a>
-<a href="">Edit Room</a>
+<a href="/room/edit/{{room.id}}">Edit Room</a>
 {{/each}}
 </div>
 
