@@ -4,13 +4,21 @@
 {{/if}}
 
 <p><strong>{{user.first_name}} {{user.last_name}}</strong></p>
-<p>{{user.gender}} | {{user.age}} | {{user.email}}</p>
 
-<h3><strong>ABOUT</strong></h3>
+<p>
+  <span class="{{hideEmpty user.gender}}">{{user.gender}} | </span>
+  <span class="{{hideEmpty user.age}}">{{user.age}} | </span>
+  <span>{{user.email}}</span>
+</p>
+
+<br>
+<h3 class="{{hideEmpty user.description}}"><strong>ABOUT</strong></h3>
 <p>{{user.description}}</p>
 
-<h3><strong>INTERESTS</strong></h3>
+<br>
+<h3 class="{{hideEmpty user.Interests}}"><strong>INTERESTS</strong></h3>
 {{#if owner}}
+
 {{#each user.Interests as |interest|}}
 <div class="flex">
   <p><strong>{{interest.Category.name}}</strong>: {{interest.body}}</p>
@@ -18,7 +26,15 @@
 {{/each}}
 
 {{else}}
+
 {{#each user.Interests as |interest|}}
 <p><strong>{{interest.Category.name}}</strong>: {{interest.body}}</p>
 {{/each}}
+
 {{/if}}
+
+<br>
+<h3 class="{{hideEmpty rooms}}"><strong>Rooms</strong></h3>
+{{#each rooms as |room|}}
+<P><strong>{{room.title}}</strong>: {{room.description}}</P>
+{{/each}}
