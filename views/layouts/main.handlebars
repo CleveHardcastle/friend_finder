@@ -22,8 +22,8 @@
 
 <body>
   <div>
-    <div class="">
-      <div class="navbar md:invisible md:h-0 fixed bg-gray-200/25 top-0">
+    <div class="h-full">
+      <div class="h-screen navbar md:invisible md:h-0 fixed bg-gray-200/25 top-0">
         <div class="container nav-container text-right">
           <h1 class="p-2 text-3xl">/FF</h1>
           <input class="checkbox" type="checkbox" name="" id="" />
@@ -44,10 +44,10 @@
     </div>
     <div class="grid md:grid-cols-[18%_82%] h-0">
       <header class="">
-        <aside class="h-full min-h-full invisible md:visible" aria-label="Sidebar">
-          <div class="h-full min-h-full px-3 py-4 overflow-y-auto rounded bg-gray-50 dark:bg-gray-800 bg-[#494B50] ">
+        <div class="h-full min-h-full invisible md:visible" aria-label="Sidebar">
+          <div class="h-full w-[18%] fixed min-h-full px-3 py-4 overflow-y-auto rounded bg-gray-50 dark:bg-gray-800 bg-[#494B50]">
             <h1 class="text-[52px] text-center hover:text-[#C89B3C]">/FF</h1>
-            <ul class="space-y-2">
+            <ul class="space-y-2 mt-[20%]">
               <li>
                 <a href="/"
                   class="flex items-center p-2 text-base font-normal  text-[#FFFFFF] rounded-lg dark:text-white hover:underline hover:text-[#C89B3C] dark:hover:bg-gray-700">
@@ -100,7 +100,7 @@
               </li>
             </ul>
           </div>
-        </aside>
+        </div>
       </header>
       
       {{{body}}}
