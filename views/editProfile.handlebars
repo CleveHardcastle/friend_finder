@@ -1,87 +1,130 @@
-<p> edit page</p>
+<div class="h-full m-4 mt-[55px] flex items-center flex-col">
+  <div class="h-screen">
+    <h2 class="text-2xl">User Information</h2>
+    <div class="block p-6 w-5/6">
 
-<div class="flex items-center flex-col">
-  <h2>User Information</h2>
-  <div class="block p-6 max-w-md">
-    <form id="user-info">
-      <div class="grid grid-cols-2 gap-4">
-        <div class="form-group mb-6">
-          <input type="text" class="form-control block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none" 
-            id="first-name" name="first-name" placeholder="First name">
+      <form id="user-info">
+        <input type="hidden" name="userId" value="{{user.id}}">
+        <div class="grid grid-cols-2 gap-4">
+
+          <div class="form-group mb-6">
+            <label for="first-name">First Name</label>
+            <input type="text" class="form-control block w-full px-3 py-1.5 text-base font-normal text-[#FFFFFF] bg-[#494B50] bg-clip-padding border border-solid border-gray-800 rounded transition ease-in-out m-0 focus:border-blue-600 focus:outline-none" 
+              id="first-name" name="first-name" placeholder="First name" value="{{user.first_name}}">
+          </div>
+          <div class="form-group mb-6">
+            <label for="last-name">Last Name</label>
+            <input type="text" class="form-control block w-full px-3 py-1.5 text-base font-normal text-[#FFFFFF] bg-[#494B50] bg-clip-padding border border-solid border-gray-800 rounded transition ease-in-out m-0 focus:border-blue-600 focus:outline-none" 
+              id="last-name" name="last-name" placeholder="Last name" value="{{user.last_name}}">
+          </div>
         </div>
-        <div class="form-group mb-6">
-          <input type="text" class="form-control block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none" 
-            id="last-name" bane="last-name" placeholder="Last name">
+
+        <div class="grid grid-cols-2 gap-4">
+          <div class="form-group mb-6">
+            <label for="age">Age</label>
+            <input type="text" class="form-control block w-full px-3 py-1.5 text-base font-normal text-[#FFFFFF] bg-[#494B50] bg-clip-padding border border-solid border-gray-800 rounded transition ease-in-out m-0 focus:border-blue-600 focus:outline-none" 
+              id="age" name="age" placeholder="Age" value="{{user.age}}">
+          </div>
+          <div class="form-group mb-6">
+            <label for="gender">Gender</label>
+            <select class="form-select appearance-none block w-full px-3 py-1.5 text-base font-normal text-[#FFFFFF] bg-[#494B50] bg-clip-padding bg-no-repeat border border-solid border-gray-800 rounded transition ease-in-out m-0 focus:border-blue-600 focus:outline-none" 
+              id="gender" name="gender">
+              <option>Gender</option>
+              {{#each genderOptions as |option|}}
+              <option value="{{option}}" {{optionSelect option ../user.gender}}>{{option}}</option>
+              {{/each}}
+            </select>
+          </div>
         </div>
-      </div>
-      <div class="grid grid-cols-2 gap-4">
+
         <div class="form-group mb-6">
-          <input type="text" class="form-control block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none" 
-            id="age" name="age" placeholder="Age">
+          <label for="description">About You</label>
+          <textarea id="description" name="description" placeholder="Hello! I am ..."
+          class="form-control block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-[#494B50] bg-clip-padding border border-solid border-gray-800 rounded transition ease-in-out m-0 focus:text-gray-700 focus:border-blue-600 focus:outline-none">{{user.description}}</textarea>
         </div>
-        <div class="form-group mb-6">
-          <select class="form-select appearance-none block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding bg-no-repeat border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none" 
-            id="gender" name="gender">
-              <option selected>Gender</option>
-              <option value="1">Female</option>
-              <option value="2">Male</option>
-              <option value="3">Non-binary/Non-conforming</option>
-              <option value="3">Prefer not to respond</option>
-          </select>
+
+        <button type="submit" class="w-full px-6 py-2.5 bg-[#6D9886] text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out"> 
+          Update User Info
+        </button>
+      </form>
+    </div>
+
+    <h2 class="text-2xl">Interests</h2>
+
+    <div class="block p-6 w-5/6">
+      <form id="interest-form">
+        <input type="hidden" name="userId" value="{{user.id}}"> 
+        <div id="user-interest">
+
+          {{#each user.Interests as |interest|}}
+          <div class="interest-grid grid grid-cols-7 gap-4">
+
+            <div class="form-group col-span-2 mb-6">
+              <select class="form-select appearance-none block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding bg-no-repeat border border-solid border-gray-800 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none" 
+                id="{{interest.id}}" name="interest-category">
+                {{#each ../categories as |category|}}
+                <option value="{{category.id}}" {{optionSelect category.id interest.category_id}}>{{category.name}}</option>
+                {{/each}}
+              </select>
+            </div>
+
+            <div class="form-group col-span-4 mb-6">
+              <textarea class="form-control block w-full px-3 py-1.5 text-base font-normal text-[#FFFFFF] bg-[#494B50] bg-clip-padding border border-solid border-gray-800 rounded transition ease-in-out m-0 focus:text-gray-700 focus:border-blue-600 focus:outline-none" 
+              id="{{interest.id}}" name="interest-body" placeholder="Your interests...">{{interest.body}}</textarea>
+            </div>
+
+            <div class="form-group mb-6">
+              <button type="button" onclick="deleteInterest(event)" id="{{interest.id}}"
+              class="btn-close box-content w-4 h-4 p-1 text-black border-none rounded-none opacity-50 focus:shadow-none focus:outline-none focus:opacity-100 hover:text-black hover:opacity-75 hover:no-underline">X</button>
+            </div>
+          </div>
+          {{/each}}
+
+          {{!-- empty interest fields - template is hidden on page render --}}
+          <div class="interest-grid-new hidden grid grid-cols-7 gap-4" id="template">
+            <div class="form-group col-span-2 mb-6">
+              <select class="form-select appearance-none block w-full px-3 py-1.5 text-base font-normal text-[#FFFFFF] bg-[#494B50] bg-clip-padding bg-no-repeat border border-solid border-gray-800 rounded transition ease-in-out m-0 focus:bg-[#494B50] focus:border-blue-600 focus:outline-none" 
+                name="interest-category">
+                <option>Category</option>
+                {{#each categories as |category|}}
+                <option value="{{category.id}}">{{category.name}}</option>
+                {{/each}}
+              </select>
+            </div>
+
+            <div class="form-group col-span-4 mb-6">
+              <textarea class="form-control block w-full px-3 py-1.5 text-base font-normal text-[#FFFFFF] bg-[#494B50] bg-clip-padding border border-solid border-gray-800 rounded transition ease-in-out m-0 focus:border-blue-600 focus:outline-none" 
+              name="interest-body" placeholder="Your interests..."></textarea>
+            </div>
+
+            <div class="form-group mb-6">
+              <button type="button" onclick="deleteInterest(event)"
+              class="btn-close box-content w-4 h-4 p-1 text-black border-none rounded-none opacity-50 focus:shadow-none focus:outline-none focus:opacity-100 hover:text-black hover:opacity-75 hover:no-underline">X</button>
+            </div>
+
+          </div>
         </div>
-      </div>
-      <div class="form-group mb-6">
-        <input type="text" class="form-control block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none" 
-          id="exampleInput125"
-          placeholder="Email address">
-      </div>
-      <div class="form-group mb-6">
-        <input type="text" class="form-control block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none" 
-          id="exampleInput126"
-          placeholder="Password">
-      </div>
-      <button type="submit" class="w-full px-6 py-2.5 bg-blue-600 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-blue-700 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out"> 
-        Update User Info
+
+        <a class="w-full px-6 py-2.5 bg-[#6D9886] text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out" 
+        id="add-interest" onclick="addInterest(event)">
+          Add
+        </a>
+        <button type="submit" class="w-full px-6 py-2.5 mt-5 bg-[#6D9886] text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out"> 
+          Update User Interests
+        </button>
+      </form>
+    </div>
+
+    <div class="flex p-6 rounded-lg shadow-lg bg-[#494B50] w-5/6">
+      <button type="button" onclick="cancelEdit(event)" class="w-1/2 px-6 py-2.5 bg-gray-600 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-blue-700 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out">
+        Cancel
       </button>
-    </form>
-  </div>
-
-  <h2>Interests</h2>
-  <div class="block p-6 max-w-md">
-    <form id="user-interst">
-      {{#each User.Interest as |interest|}}
-      <div class="grid grid-cols-2 gap-4">
-        <div class="form-group mb-6">
-          <select class="form-select appearance-none block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding bg-no-repeat border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none" 
-            id="gender" name="gender" value="{{interest.}}">
-              <option selected>Gender</option>
-              <option value="Female">Female</option>
-              <option value="Male">Male</option>
-              <option value="Non-binary/Non-conforming">Non-binary/Non-conforming</option>
-              <option value="N/A">Prefer not to respond</option>
-          </select>
-        </div>
-        <div class="form-group mb-6">
-          <input type="text" class="form-control block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none" 
-            id="last-name" bane="last-name" placeholder="Last name">
-        </div>
-      </div>
-      <button type="submit" class="w-full px-6 py-2.5 bg-blue-600 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-blue-700 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out"> 
-        Update User Interests
+      <button type="button" onclick="deleteUser(event)" class="w-1/2 px-6 py-2.5 bg-red-600 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-blue-700 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out">
+        Delete
       </button>
-    </form>
-
-
-
-
-  <div class="flex w-full p-6 rounded-lg shadow-lg bg-white max-w-md">
-    <button type="button" class="w-1/2 px-6 py-2.5 bg-gray-600 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-blue-700 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out">
-      Cancel
-    </button>
-    <button type="button" class="w-1/2 px-6 py-2.5 bg-red-600 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-blue-700 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out">
-      Delete
-    </button>
+    </div>
   </div>
 </div>
+
 
 <script src="/js/edit-profile.js"></script>
