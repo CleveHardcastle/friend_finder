@@ -86,8 +86,8 @@ router.get('/edit/:id', async (req,res) => {
     })
 
     const room = roomData.get({ plain: true });
-
-    res.render('editRoom', { room });
+    const loggedIn = 
+    res.render('editRoom', { room, loggedIn });
 
   } catch (err) {
     res.status(500).json(err);

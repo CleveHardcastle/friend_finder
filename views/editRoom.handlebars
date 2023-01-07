@@ -1,3 +1,6 @@
+{{> sidebar loggedIn = loggedIn}}
+
+<div class="h-screen">
 <input type="hidden" name="room-id" value="{{room.id}}" />
 
 <form id="room-edit-form">  
@@ -38,5 +41,6 @@
     </button>
     </div>
 </form>
+</div>
 
 <script src="/js/editRoom.js"></script>

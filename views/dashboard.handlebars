@@ -1,3 +1,6 @@
+{{> sidebar loggedIn = loggedIn}}
+
+<div class="h-screen">
 <div>
 {{#each rooms as |room|}}
 <p>{{room.title}}: {{room.description}}</p>
@@ -23,5 +26,6 @@
     </button>
     </div>
 </form>
+</div>
 
 <script src="/js/dashboard.js"></script>
