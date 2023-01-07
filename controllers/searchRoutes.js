@@ -5,7 +5,6 @@ const op = require('sequelize').Op;
 router.get("/:text", async (req, res) => {
     try {
         const search = req.params.text.split("_");
-        console.log(search);
         const loggedIn = req.session.loggedIn;
 
         let rooms = [];
@@ -30,9 +29,7 @@ router.get("/:text", async (req, res) => {
             });
     
             newRoom = roomsData.map((room) => room.get({ plain: true }));
-            console.log(newRoom);
             rooms = rooms.concat(newRoom);
-            console.log(rooms);
         }
 
         rooms = rooms.sort((a, b) => a.id - b.id).filter(
