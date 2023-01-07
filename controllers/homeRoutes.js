@@ -5,7 +5,7 @@ const room = require("./api/roomRoutes");
 router.get("/", async (req, res) => {
   try {
     // If user is logged in, render room user is in
-    const loggedIn = req.session.loggedIn
+    const loggedIn = req.session.loggedIn;
     if (req.session.loggedIn) {
       const roomsData = await Room.findAll({
         attributes: ["id", "title", "description", "creator_id"],
@@ -79,5 +79,18 @@ router.get("/dashboard", async (req, res) => {
   
   }
 });
+
+router.get('/browse', async (req, res) => {
+  try {
+    // const roomsData = await Room.findAll({ include: User });
+    // const rooms = roomsData.map((room) => room.get({ plain: true }));
+    const rooms = {};
+    const loggedIn = req.session.loggedIn;
+
+    res.render("browse", { rooms, loggedIn });
+  } catch (err) {
+    res.status(500).json(err);
+  }
+})
 
 module.exports = router;
