@@ -33,6 +33,15 @@ router.get("/", async (req, res) => {
   }
 });
 
+router.get("/profile", (req, res) => {
+  const loggedIn = req.session.loggedIn;
+  if (loggedIn) {
+    res.redirect(`/profile/${req.session.userId}`);
+  } else {
+    res.redirect('/login');
+  }
+})
+
 router.get("/login", (req, res) => {
   const loggedIn = req.session.loggedIn;
   if (req.session.loggedIn) {
