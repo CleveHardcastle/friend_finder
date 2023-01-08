@@ -11,6 +11,7 @@ Interest.belongsTo(Category, {
 
 Interest.belongsTo(User, {
   foreignKey: 'user_id',
+  onDelete: 'CASCADE'
 });
 
 Room.belongsTo(User, {
@@ -24,6 +25,7 @@ Room.hasMany(Message, {
 
 Message.belongsTo(User, {
   foreignKey: 'user_id',
+  onDelete: 'CASCADE'
 });
 
 User.hasMany(Interest, {
@@ -33,16 +35,6 @@ User.hasMany(Interest, {
 User.hasMany(Room, {
   foreignKey: 'creator_id',
 });
-
-// Room.belongsToMany(User, {
-//   through: roomMember,
-//   foreignKey: 'room_id',
-// });
-
-// User.belongsToMany(Room, {
-//   through: roomMember,
-//   foreignKey: 'member_id',
-// })
 
 Room.hasMany(roomMember, {
   foreignKey: 'room_id',
@@ -54,10 +46,12 @@ User.hasMany(roomMember, {
 
 roomMember.belongsTo(Room, {
   foreignKey: 'room_id',
+  onDelete: 'CASCADE'
 });
 
 roomMember.belongsTo(User, {
   foreignKey: 'member_id',
+  onDelete: 'CASCADE'
 });
 
 module.exports = {
