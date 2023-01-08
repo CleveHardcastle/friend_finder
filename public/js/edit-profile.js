@@ -1,4 +1,43 @@
-let newInterestCount = 0;
+const cloud_name = 'danpwq1p5';
+const api_key = '844979435753211';
+
+const saveProfileImg = async (event) => {
+  event.preventDefault();
+
+  const userId = document.querySelector('input[name="userId"]').value;
+  const signatureResponse = await axios.get("/get-signature");
+
+  const data = new FormData();
+  data.append("file", document.querySelector("#file-field").files[0])
+  data.append("folder",signatureResponse.data.folder)
+  data.append("api_key", api_key)
+  data.append("signature", signatureResponse.data.signature)
+  data.append("timestamp", signatureResponse.data.timestamp)
+
+  const cloudinaryResponse = await axios.post(`https://api.cloudinary.com/v1_1/${cloud_name}/image/upload`, data, {
+    headers: { "Content-Type": "multipart/form-data" },
+    onUploadProgress: function (e) {
+      console.log(e.loaded / e.total)
+    }
+  })
+
+  // send the image info back to our server
+  const photoData = {
+    public_id: cloudinaryResponse.data.public_id,
+    version: cloudinaryResponse.data.version,
+    signature: cloudinaryResponse.data.signature
+  }
+
+  const img_url = (await axios.post("/do-something-with-photo", photoData)).data;
+
+  await fetch(`/api/user/${userId}`, {
+    method: 'PUT',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ img_url})
+  });
+
+  document.location.replace(`/profile/${userId}`)
+}
 
 // Inserts entry field for interests when add button is clicked
 const addInterest = (event) => {
@@ -123,6 +162,6 @@ const deleteUser = async (event) => {
   document.location.replace('/');
 }
 
-
+document.querySelector("#profile-img-form").addEventListener("submit", saveProfileImg);
 document.querySelector('#user-info').addEventListener('submit', saveUserInfo);
 document.querySelector('#interest-form').addEventListener('submit', saveInterest);
