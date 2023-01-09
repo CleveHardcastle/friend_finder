@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const { roomMember, User } = require('../../models');
+const { roomMember } = require('../../models');
 const withAuth = require('../../utils/auth')
 
 // triggered when a logged in user joins a room

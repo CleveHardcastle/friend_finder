@@ -1,40 +1,40 @@
 <div class="mt-16 md:mt-0 p-3 h-screen">
-    <div class="flex flex-col justify-center items-center h-full gap-y-5">
-        <form class="self-center" id="room-creation-form">
-            <h1 class="text-center mb-3 text-3xl bold">NEW ROOM</h1>
-            <div class="form-floating mb-3 xl:w-96">
-                <input type="text"
-                    class="form-control block w-full px-3 py-1.5 text-base font-normal bg-[#494B50] bg-clip-padding border border-solid border-gray-800 rounded transition ease-in-out m-0 focus:border-blue-600 focus:outline-none"
-                    id="title" name="title" placeholder="Title">
-                <label for="title" class="text-[#FFFFFF]">Title</label>
-            </div>
-            <div class="form-floating mb-3 xl:w-96">
-                <textarea
-                    rows="14" class="form-control block w-full px-3 py-1.5 text-base font-normal bg-[#494B50] bg-clip-padding border border-solid border-gray-800 rounded transition ease-in-out m-0 focus:border-blue-600 focus:outline-none"
-                    id="description" name="description" placeholder="Description"></textarea>
-                <label for="description" class="text-[#FFFFFF]">Description</label>
-            </div>
+  <div class="flex flex-col justify-center items-center h-full gap-y-5">
+    <form class="self-center" id="room-creation-form">
+      <h1 class="text-center mb-3 text-3xl bold">NEW ROOM</h1>
+      <div class="form-floating mb-3 xl:w-96">
+        <input type="text"
+          class="form-control block w-full px-3 py-1.5 text-base font-normal bg-[#494B50] bg-clip-padding border border-solid border-gray-800 rounded transition ease-in-out m-0 focus:border-blue-600 focus:outline-none"
+          id="title" name="title" placeholder="Title">
+        <label for="title" class="text-[#FFFFFF]">Title</label>
+      </div>
+      <div class="form-floating mb-3 xl:w-96">
+        <textarea rows="14"
+          class="form-control block w-full px-3 py-1.5 text-base font-normal bg-[#494B50] bg-clip-padding border border-solid border-gray-800 rounded transition ease-in-out m-0 focus:border-blue-600 focus:outline-none"
+          id="description" name="description" placeholder="Description"></textarea>
+        <label for="description" class="text-[#FFFFFF]">Description</label>
+      </div>
 
-            <button type="submit"
-                class="inline-block px-7 py-3 bg-[#6D9886] text-white font-medium text-sm leading-snug uppercase rounded shadow-md hover:bg-blue-700 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out">
-                Create
-            </button>
-        </form> 
-        <div class="flex flex-col md:flex-row content-start justify-evenly flex-wrap w-3/4 mx-auto">
-            {{#each rooms as |room|}}
-            <div class="max-w-sm rounded text-center text-white bg-[#494B50] overflow-hidden shadow-lg">
-                <div class="px-6 py-4">
-                    <div class="font-bold text-xl mb-2">{{room.title}}</div>
-                    <p class="text-base">
-                        {{room.description}}
-                    </p>
-                    <a class="block" href="/room/{{room.id}}">go to room</a>
-                    <a class = "block" href="/room/edit/{{room.id}}">Edit Room</a>
-                </div>
-            </div>
-            {{/each}}
-        </div>  
+      <button type="submit"
+        class="inline-block px-7 py-3 bg-[#6D9886] text-white font-medium text-sm leading-snug uppercase rounded shadow-md hover:bg-blue-700 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out">
+        Create
+      </button>
+    </form>
+    <div class="flex flex-col md:flex-row content-start justify-evenly flex-wrap w-3/4 mx-auto">
+      {{#each rooms as |room|}}
+      <div class="w-full md:w-96 rounded mb-4 text-center text-white bg-[#494B50] overflow-hidden shadow-lg">
+        <div class="px-6 py-4">
+          <div class="font-bold text-xl mb-2">{{room.title}}</div>
+          <p class="text-base">
+            {{room.description}}
+          </p>
+          <a class="block mt-2 md:mt-0 inline-block px-6 py-2.5 bg-[#6D9886] text-white font-medium text-xs rounded shadow-md" href="/room/{{room.id}}">go to room</a>
+          <a class="block mt-2 md:mt-0 inline-block px-6 py-2.5 bg-[#6D9886] text-white font-medium text-xs rounded shadow-md" href="/room/edit/{{room.id}}">Edit Room</a>
+        </div>
+      </div>
+      {{/each}}
     </div>
+  </div>
 </div>
 
 

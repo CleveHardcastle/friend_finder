@@ -9,14 +9,16 @@
       <a href="/profile/edit/{{user.id}}" class="mt-[50px] md:mt-0 inline-block px-6 py-2.5 bg-[#6D9886] text-white font-medium text-xs rounded shadow-md">Edit</a>
       {{/if}}
     </div>
-    <div class="md:flex">
+    <div class="md:flex mt-4 md:items-end">
       {{!-- added line for profile img --}}
-      <img class="profile-img mt-4 mx-auto md:mt-0 md:ml-0 md:mr-2 border-4 rounded-full border-[#6D9886]" src="{{img_url}}"> 
+      <img class="profile-img mx-auto md:ml-0 md:mr-2 border-4 rounded-full border-[#6D9886]" src="{{img_url}}"> 
+      <p class="text-[52px] bold md:mb-4"><strong>{{user.first_name}} {{user.last_name}}</strong></p>
+    </div>
 
-      <p class="text-[52px] bold"><strong>{{user.first_name}} {{user.last_name}}</strong></p>
+    <div class="md:flex">
       <p class="mt-5 m-[25px]">
         <span class="{{hideEmpty user.gender}}">{{user.gender}} | </span>
-        <span class="{{hideEmpty user.age}}">{{user.age}} | </span>
+        <span class="{{hideEmpty user.age}}">{{user.age}}yrs | </span>
         <span>{{user.email}}</span>    
       </p>
     </div>
@@ -47,13 +49,13 @@
 
     <br>
     <h3 class="{{hideEmpty rooms}} text-[40px]"><strong>Rooms</strong></h3>
-    <div class="md:indent-5 columns-1 md:columns-2 p-4 m-3">
+    <div class="grid md:grid-cols-2 drop-shadow-[3px_3px_1px#6D9886]">
       {{#each rooms as |room|}}
-      <div class="border-[#494B50] bg-[#494B50] h-[239px]">
-        <p class="text-4xl"><strong>{{room.title}}</strong>:</p> 
-        <p class="text-xl">{{room.description}}</p>
+      <div class="border-[#494B50] bg-[#494B50] min-h-[150px] md:min-h-[200px]">
+        <p class="text-4xl px-2 pt-2"><strong>{{room.title}}</strong>:</p> 
+        <p class="text-xl px-2">{{room.description}}</p>
       </div>
-    {{/each}}
+      {{/each}}
     </div>
   </div>
 </section>
