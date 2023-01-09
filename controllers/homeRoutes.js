@@ -1,6 +1,7 @@
 const router = require("express").Router();
 const { Room, User, roomMember } = require("../models");
 const room = require("./api/roomRoutes");
+const withAuth = require('../utils/auth');
 
 router.get("/", async (req, res) => {
   try {
@@ -79,7 +80,7 @@ router.get("/about", (req, res) => {
   res.render("about", { loggedIn });
 });
 
-router.get("/dashboard", async (req, res) => {
+router.get("/dashboard", withAuth, async (req, res) => {
   if (!req.session.loggedIn) {
     res.redirect('/');
   } else {

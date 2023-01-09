@@ -86,7 +86,7 @@ router.get('/edit/:id', async (req,res) => {
     })
 
     const room = roomData.get({ plain: true });
-    const loggedIn = 
+    const loggedIn = req.session.loggedIn;
     res.render('editRoom', { room, loggedIn });
 
   } catch (err) {

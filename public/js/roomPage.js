@@ -29,6 +29,8 @@ const messageCreationFormHandler = async function(event) {
 };
 
 const joinRoomHandler = async function(event) {
+    event.stopPropagation();
+
     if (loggedIn){
         const response = await fetch('/api/room-member', {
           method: 'POST',
@@ -43,5 +45,5 @@ const joinRoomHandler = async function(event) {
 
 }
 
-document.querySelector('#join-room').addEventListener('click', joinRoomHandler);
+// document.querySelector('#join-room').addEventListener('click', joinRoomHandler);
 document.querySelector('#message-creation-form').addEventListener('submit', messageCreationFormHandler);

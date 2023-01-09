@@ -1,7 +1,7 @@
 <div class="flex flex-col gap-8 justify-center h-screen p-4 mt-16 md:mt-0">
     <h1 class="text-2xl text-center">{{room.title}}: {{room.description}}</h1>
     {{#unless joined}}
-    <button type="button" id="join-room">Join Room</button>
+    <button type="button" id="join-room" onclick="joinRoomHandler(event)">Join Room</button>
     {{/unless}}
     <div class="flex flex-col-reverse grow overflow-y-auto">
         <div class="text-left mt-auto flex flex-col-reverse">
