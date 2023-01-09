@@ -1,35 +1,40 @@
-# friend_finder
+# Employee Tracker
+
+[![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)
+
+## Description 
 
 
-## Links
 
-### "/" 
-- all rooms (logged out)
-- your rooms (logged in)
+## Table of Contents 
 
-### "/profile/:id" 
-- user basic information (name, contact, age, gender, img )
-- interests 
-- rooms they are in 
+* [Installation](#installation) 
 
-### "/profile/edit/:id" - withAuth
-- prefilled input fields allowed for editing.
-- update button 
-- delete button??
-- cancel button 
+* [Usage](#Usage) 
 
-### "/room"
-- by default displays all rooms,
-- can filter and search for rooms (by category or interest keywords)
+* [License](#license) 
 
-### "/room/:id" 
-- display room information (title and description, owner and creation date)
-- all messages
-- input field to send message 
-  - allow users to edit and delete their messages??
+* [Contribution](#contribution) 
+
+* [Questions](#questions) 
+
+## Installation 
 
 
-__________ Future Functionality _________
-1. implement friending system 
-    - search for friends 
-    - add friend section to profile
+
+## Usage 
+
+
+
+## License 
+
+GNU General Public License v3.0
+
+## Contribution
+
+If you would like to contribute to this application, please reach out to any of the collaborators via email first. You can find the collaborator's email listed under the 'Questions' section below.  
+
+## Questions 
+If you have any questions about the repo, open an issue or contact the team through the contact methods below. 
+
+- [wytseng](https://github.com/wytseng).
