@@ -21,133 +21,128 @@
 </head>
 
 <body>
-  <div>
-    <div class="h-full">
-      <div class="navbar md:invisible md:h-0 fixed bg-[#34353A] top-0">
-        <div class="container nav-container text-right">
-          <h1 class="p-2 text-3xl">/FF</h1>
-          <input class="checkbox" type="checkbox" name="" id="" />
-          <div class="hamburger-lines">
-            <span class="line line1"></span>
-            <span class="line line2"></span>
-            <span class="line line3"></span>
-          </div>
-          <div class="menu-items">
-            <li class="text-[#FFFFFF]"><a href="/">Home</a></li>
-            {{#if loggedIn}}
-            <li class="text-[#FFFFFF]"><a href="/profile/{{userId}}">My Profile</a></li>
-            <li class="text-[#FFFFFF]"><a href="/dashboard">My Dashboard</a></li>
-            {{/if}}
-            <li class="text-[#FFFFFF]"><a href="/browse">Browse</a></li>
-            <li class="text-[#FFFFFF]"><a href="/about">About Us</a></li>
-            {{#unless loggedIn}}
-            <li class="text-[#FFFFFF]"><a href="/login">Login</a></li>
-            {{/unless}}
-            {{#if loggedIn}}
-            <li class="text-[#FFFFFF]"><a href="/logout">Logout</a></li>
-            {{/if}}
-          </div>
+  {{!-- Mobile Menu --}}
+  <div class="h-full">
+    <div class="navbar md:invisible md:h-0 fixed bg-[#34353A] top-0">
+      <div class="container nav-container text-right">
+        <h1 class="p-2 text-3xl">/FF</h1>
+        <input class="checkbox" type="checkbox" name="" id="" />
+        <div class="hamburger-lines">
+          <span class="line line1"></span>
+          <span class="line line2"></span>
+          <span class="line line3"></span>
+        </div>
+        <div class="menu-items">
+          <li class="text-[#FFFFFF]"><a href="/">Home</a></li>
+          {{#if loggedIn}}
+          <li class="text-[#FFFFFF]"><a href="/profile/{{userId}}">My Profile</a></li>
+          <li class="text-[#FFFFFF]"><a href="/dashboard">My Dashboard</a></li>
+          {{/if}}
+          <li class="text-[#FFFFFF]"><a href="/browse">Browse</a></li>
+          <li class="text-[#FFFFFF]"><a href="/about">About Us</a></li>
+          {{#unless loggedIn}}
+          <li class="text-[#FFFFFF]"><a href="/login">Login</a></li>
+          {{/unless}}
+          {{#if loggedIn}}
+          <li class="text-[#FFFFFF]"><a href="/logout">Logout</a></li>
+          {{/if}}
         </div>
       </div>
     </div>
-    <div class="grid md:grid-cols-[18%_82%] h-0">
-      
-<header class="">
+  </div>
+
+  {{!-- Web Menu --}}
+  <div class="grid md:grid-cols-[24%_76%] lg:grid-cols-[18%_82%] h-0">
     <div class="h-full min-h-full invisible md:visible" aria-label="Sidebar">
-        <div class="h-full w-[18%] fixed min-h-full px-3 py-4 overflow-y-auto rounded bg-gray-50 dark:bg-gray-800 bg-[#494B50]">
+      <div
+        class="h-full w-[24%] lg:w-[18%] fixed min-h-full px-3 py-4 overflow-y-auto rounded bg-gray-50 dark:bg-gray-800 bg-[#494B50]">
         <h1 class="text-[52px] text-center hover:text-[#C89B3C]">/FF</h1>
         <ul class="space-y-2 mt-[20%]">
-            <li>
+          <li>
             <a href="/"
-                class="flex items-center p-2 text-base font-normal  text-[#FFFFFF] rounded-lg dark:text-white hover:underline hover:text-[#C89B3C] dark:hover:bg-gray-700">
-                <svg aria-hidden="true"
+              class="flex items-center p-2 text-base font-normal  text-[#FFFFFF] rounded-lg dark:text-white hover:underline hover:text-[#C89B3C] dark:hover:bg-gray-700">
+              <svg aria-hidden="true"
                 class="w-6 h-6 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white"
                 fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-                </svg>
-                <span class="ml-3">Home</span>
+              </svg>
+              <span class="ml-3">Home</span>
             </a>
-            </li>
-            {{#if loggedIn}}
-            <li>
+          </li>
+          {{#if loggedIn}}
+          <li>
             <a href="/profile/{{userId}}"
-                class="flex items-center p-2 text-base font-normal  text-[#FFFFFF] rounded-lg dark:text-white hover:underline hover:text-[#C89B3C] dark:hover:bg-gray-700">
-                <svg aria-hidden="true"
+              class="flex items-center p-2 text-base font-normal  text-[#FFFFFF] rounded-lg dark:text-white hover:underline hover:text-[#C89B3C] dark:hover:bg-gray-700">
+              <svg aria-hidden="true"
                 class="flex-shrink-0 w-6 h-6 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white"
                 fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-                </svg>
-                <span class="flex-1 ml-3 whitespace-nowrap">My Profile</span>
+              </svg>
+              <span class="flex-1 ml-3 whitespace-nowrap">My Profile</span>
             </a>
-            </li>
-            <li>
+          </li>
+          <li>
             <a href="/dashboard"
-                class="flex items-center p-2 text-base font-normal  text-[#FFFFFF] rounded-lg dark:text-white hover:underline hover:text-[#C89B3C] dark:hover:bg-gray-700">
-                <svg aria-hidden="true"
+              class="flex items-center p-2 text-base font-normal  text-[#FFFFFF] rounded-lg dark:text-white hover:underline hover:text-[#C89B3C] dark:hover:bg-gray-700">
+              <svg aria-hidden="true"
                 class="flex-shrink-0 w-6 h-6 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white"
                 fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-                </svg>
-                <span class="flex-1 ml-3 whitespace-nowrap">My Dashboard</span>
+              </svg>
+              <span class="flex-1 ml-3 whitespace-nowrap">My Dashboard</span>
             </a>
-            </li>
-            {{/if}}
-            <li>
+          </li>
+          {{/if}}
+          <li>
             <a href="/browse"
-                class="flex items-center p-2 text-base font-normal  text-[#FFFFFF] rounded-lg dark:text-white hover:underline hover:text-[#C89B3C] dark:hover:bg-gray-700">
-                <svg aria-hidden="true"
+              class="flex items-center p-2 text-base font-normal  text-[#FFFFFF] rounded-lg dark:text-white hover:underline hover:text-[#C89B3C] dark:hover:bg-gray-700">
+              <svg aria-hidden="true"
                 class="flex-shrink-0 w-6 h-6 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white"
                 fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-                </svg>
-                <span class="flex-1 ml-3 whitespace-nowrap">Browse</span>
+              </svg>
+              <span class="flex-1 ml-3 whitespace-nowrap">Browse</span>
             </a>
-            </li>
-            <li>
+          </li>
+          <li>
             <a href="/about"
-                class="flex items-center p-2 text-base font-normal  text-[#FFFFFF] rounded-lg dark:text-white hover:underline hover:text-[#C89B3C] dark:hover:bg-gray-700">
-                <svg aria-hidden="true"
+              class="flex items-center p-2 text-base font-normal  text-[#FFFFFF] rounded-lg dark:text-white hover:underline hover:text-[#C89B3C] dark:hover:bg-gray-700">
+              <svg aria-hidden="true"
                 class="flex-shrink-0 w-6 h-6 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white"
                 fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-                </svg>
-                <span class="flex-1 ml-3 whitespace-nowrap">About Us</span>
+              </svg>
+              <span class="flex-1 ml-3 whitespace-nowrap">About Us</span>
             </a>
-            </li>
-            {{#unless loggedIn}}
-            <li>
+          </li>
+          {{#unless loggedIn}}
+          <li>
             <a href="/login"
-                class="flex items-center p-2 text-base font-normal  text-[#FFFFFF] rounded-lg dark:text-white hover:underline hover:text-[#C89B3C] dark:hover:bg-gray-700">
-                <svg aria-hidden="true"
+              class="flex items-center p-2 text-base font-normal  text-[#FFFFFF] rounded-lg dark:text-white hover:underline hover:text-[#C89B3C] dark:hover:bg-gray-700">
+              <svg aria-hidden="true"
                 class="flex-shrink-0 w-6 h-6 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white"
                 fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-                </svg>
-                <span class="flex-1 ml-3 whitespace-nowrap">Login</span>
+              </svg>
+              <span class="flex-1 ml-3 whitespace-nowrap">Login</span>
             </a>
-            </li>
-            {{/unless}}
-            {{#if loggedIn}}
-            <li>
+          </li>
+          {{/unless}}
+          {{#if loggedIn}}
+          <li>
             <a href="/logout"
-                class="flex items-center p-2 text-base font-normal  text-[#FFFFFF] rounded-lg dark:text-white hover:underline hover:text-[#C89B3C] dark:hover:bg-gray-700">
-                <svg aria-hidden="true"
+              class="flex items-center p-2 text-base font-normal  text-[#FFFFFF] rounded-lg dark:text-white hover:underline hover:text-[#C89B3C] dark:hover:bg-gray-700">
+              <svg aria-hidden="true"
                 class="flex-shrink-0 w-6 h-6 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white"
                 fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-                </svg>
-                <span class="flex-1 ml-3 whitespace-nowrap">Logout</span>
+              </svg>
+              <span class="flex-1 ml-3 whitespace-nowrap">Logout</span>
             </a>
-            </li>
-            {{/if}}
+          </li>
+          {{/if}}
         </ul>
-        </div>
+      </div>
     </div>
-</header>
 
-      
-      {{{body}}}
+    {{{body}}}
 
-    </div>
   </div>
 </body>
 
-
-
-
-  <script src="https://cdn.jsdelivr.net/npm/tw-elements/dist/js/index.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/tw-elements/dist/js/index.min.js"></script>
 
 </html>

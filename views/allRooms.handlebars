@@ -16,14 +16,14 @@
   <div>
     <p class="text-[35px] text-center font-bold underline decoration-blue-400">Browse Chat Rooms</p>
   </div>
-  <main class="place-items-center grid grid-cols-1 lg:grid-cols-2 drop-shadow-[3px_3px_1px#6D9886]">  
-  {{#each rooms as |room|}}
-  <div class="border-[#494B50] bg-[#494B50] w-full md:w-11/12 min-h-[150px] md:min-h-[200px] p-4 m-3">
-    <p class="text-2xl underline">{{room.title}}:</p> 
-    <p class="text-center">{{room.description}}</p>
-    <a type="button" class="mt-4 md:mt-0 inline-block px-6 py-2.5 bg-[#6D9886] text-white font-medium text-xs rounded shadow-md" href="/room/{{room.id}}">see room</a>
-  </div>
-  {{/each}}
+  <main class="place-items-center grid grid-cols-1 lg:grid-cols-2">  
+    {{#each rooms as |room|}}
+    <div class="border-[#494B50] bg-[#494B50] w-full md:w-11/12 min-h-[150px] md:min-h-[200px] p-4 m-3 shadow-[3px_3px_1px_#6D9886]">
+      <p class="text-2xl underline">{{room.title}}:</p> 
+      <p class="text-center">{{room.description}}</p>
+      <a type="button" class="mt-4 md:mt-0 inline-block px-6 py-2.5 bg-[#6D9886] text-white font-medium text-xs rounded shadow-md" href="/room/{{room.id}}">see room</a>
+    </div>
+    {{/each}}
 
   </main>
 </div>
