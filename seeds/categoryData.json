@@ -1,11 +1,38 @@
 [
   {
+    "name": "Animals"
+  },
+  {
+    "name": "Art"
+  },
+  {
+    "name": "Education"
+  },
+  {
+    "name": "Fashion"
+  },
+  {
+    "name": "Finance"
+  },
+  {
+    "name": "Food"
+  },
+  {
+    "name": "Gaming"
+  },
+  {
+    "name": "Literature"
+  },
+  {
+    "name": "Movies/TV Shows"
+  },
+  {
     "name": "Music"
   },
   {
     "name": "Sports"
   },
   {
-    "name": "Gaming"
+    "name": "Travel"
   }
 ]
