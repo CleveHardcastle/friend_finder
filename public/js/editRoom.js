@@ -57,6 +57,19 @@ const memberDeleteHandler = async function(event) {
     } else {
         alert('Room Member Deletion Failed');
     }
+};
+
+const deleteRoomHandler = async function(event) {
+    const response = await fetch(`/api/room/${roomId}`, {
+        method: 'DELETE',
+        headers: { 'Content-Type': 'application/json' }
+    });
+
+    if (response.ok) {
+        document.location.replace('/dashboard');
+    } else {
+        alert('Room Deletion Failed');
+    }
 }
 
 for (var i = 0; i <messages.length; i++){
@@ -67,3 +80,4 @@ for (var i = 0; i < members.length; i++){
 }
 
 document.querySelector('#room-edit-form').addEventListener('submit', editRoomFormHandler);
+document.querySelector('#delete').addEventListener('click', deleteRoomHandler);
