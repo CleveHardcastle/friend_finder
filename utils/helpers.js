@@ -16,5 +16,9 @@ module.exports = {
         return "hidden";
       }
     }
+  },
+
+  checkFalse: (value) => {
+    return value !== false ? true : false;
   }
 };

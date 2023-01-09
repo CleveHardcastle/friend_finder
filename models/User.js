@@ -37,6 +37,9 @@ User.init({
       len: [8],
     }
   },
+  img_url: {
+    type: DataTypes.STRING,
+  },
   description: {
     type: DataTypes.STRING,
   },

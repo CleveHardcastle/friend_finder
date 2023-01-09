@@ -1,6 +1,7 @@
 const router = require("express").Router();
 const { User, Interest, roomMember, Room, Category } = require("../models");
-const withAuth = require('../utils/auth')
+const withAuth = require('../utils/auth');
+const cloud_name = 'danpwq1p5';
 
 router.get("/:id", async (req, res) => {
   try {
@@ -30,10 +31,12 @@ router.get("/:id", async (req, res) => {
 
     const user = userData.get({ plain: true });
     const rooms = roomsData.map((room) => room.get({ plain: true }));
+    const img_url = `https://res.cloudinary.com/${cloud_name}/image/upload/c_thumb,g_face,h_150,w_150/${userData.img_url}.jpg`
     const owner = (req.session.userId == req.params.id);
     const loggedIn = req.session.loggedIn;
+    const userId = loggedIn ? req.session.userId : null;
 
-    res.render('userProfile', { user, rooms, owner, loggedIn });
+    res.render('userProfile', { user, rooms, img_url, owner, loggedIn, userId });
   } catch (err) {
     res.status(500).json(err);
   }
@@ -60,10 +63,10 @@ router.get("/edit/:id", withAuth, async (req, res) => {
     const user = userData.get({ plain: true });
     const categories = categoryData.map((category) => category.get({ plain: true }));
     const genderOptions = ["Female", "Male", "Non-binary/Non-conforming", "Prefer not to respond"];
-    const loggedIn = req.session.loggedIn;
+    const loggedIn = true;
+    const userId = req.session.userId;
 
-    res.render('editProfile', { user, categories, genderOptions, loggedIn })
-    // res.json({ userData, categoryData})
+    res.render('editProfile', { user, categories, genderOptions, loggedIn, userId });
   } catch (err) {
     res.status(500).json(err);
   }
