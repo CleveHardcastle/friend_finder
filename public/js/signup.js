@@ -12,7 +12,8 @@ const signupFormHandler = async function(event) {
       email: emailEl.value,
       password: passwordEl.value,
       first_name: firstNameEl.value,
-      last_name: lastNameEl.value
+      last_name: lastNameEl.value,
+      img_url: "/friend-finder/member-default"
     }),
     headers: { 'Content-Type': 'application/json' }
   });

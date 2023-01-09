@@ -31,7 +31,7 @@ router.get("/:id", async (req, res) => {
 
     const user = userData.get({ plain: true });
     const rooms = roomsData.map((room) => room.get({ plain: true }));
-    const img_url = `https://res.cloudinary.com/${cloud_name}/image/upload/c_thumb,g_face,h_150,w_150/${userData.img_url}.jpg`
+    const img_url = `https://res.cloudinary.com/${cloud_name}/image/upload/w_150,c_fill,ar_1:1,g_auto,r_max/${userData.img_url}.jpg`
     const owner = (req.session.userId == req.params.id);
     const loggedIn = req.session.loggedIn;
     const userId = loggedIn ? req.session.userId : null;

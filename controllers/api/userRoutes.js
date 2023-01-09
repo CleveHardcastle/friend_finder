@@ -2,31 +2,6 @@ const router = require('express').Router();
 const { Category, Interest, User } = require('../../models');
 const withAuth = require('../../utils/auth');
 
-// router.get('/:id', async (req, res) => {
-//   try {
-//     const userData = await User.findByPk(req.params.id, {
-//       include: [
-//         {
-//           model: Interest,
-//           attributes: ['id','body'],
-//           include: [
-//             {
-//               model: Category,
-//               attributes: ['name']
-//             }
-//           ]
-//         }
-//       ]
-//     });
-
-//       const user = userData.get({ plain: true });
-
-//       return res.json(user);
-//   } catch (err) {
-//       res.status(500).json(err);
-//   }
-// });
-
 router.post('/', async (req, res) => {
   try {
     const newUser = await User.create(req.body);
