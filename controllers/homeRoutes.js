@@ -1,10 +1,12 @@
 const router = require("express").Router();
 const { Room, User, roomMember } = require("../models");
 const room = require("./api/roomRoutes");
+const withAuth = require('../utils/auth');
 
 router.get("/", async (req, res) => {
   try {
     // If user is logged in, render room user is in
+    const loggedIn = req.session.loggedIn;
     if (req.session.loggedIn) {
       let roomsData = await Room.findAll({
         attributes: ["id", "title", "description", "creator_id"],
@@ -40,7 +42,17 @@ router.get("/", async (req, res) => {
   }
 });
 
+router.get("/profile", (req, res) => {
+  const loggedIn = req.session.loggedIn;
+  if (loggedIn) {
+    res.redirect(`/profile/${req.session.userId}`);
+  } else {
+    res.redirect('/login');
+  }
+})
+
 router.get("/login", (req, res) => {
+  
   if (req.session.loggedIn) {
     res.redirect("/");
   }
@@ -48,7 +60,14 @@ router.get("/login", (req, res) => {
   res.render("login", { loggedIn });
 });
 
+router.get("/logout", (req, res) => {
+  req.session.destroy();
+  const loggedIn = false;
+  res.render('logout', { loggedIn });
+})
+
 router.get("/signup", (req, res) => {
+  
   if (req.session.loggedIn) {
     res.redirect("/");
   }
@@ -57,18 +76,19 @@ router.get("/signup", (req, res) => {
 });
 
 router.get("/about", (req, res) => {
-  res.render("about");
+  const loggedIn = req.session.loggedIn;
+  res.render("about", { loggedIn });
 });
 
-router.get("/dashboard", async (req, res) => {
+router.get("/dashboard", withAuth, async (req, res) => {
   if (!req.session.loggedIn) {
-    res.redirect("/");
+    res.redirect('/');
   } else {
     try {
       const roomData = await Room.findAll({
         include: User,
-        where: { creator_id: req.session.userId },
-      });
+        where: { creator_id: req.session.userId }
+      })
       const rooms = roomData.map((room) => room.get({ plain: true }));
       const userId = req.session.userId
       const loggedIn = true
@@ -77,25 +97,21 @@ router.get("/dashboard", async (req, res) => {
     } catch (err) {
       res.status(500).json(err);
     }
+  
   }
 });
 
-router.get("/dashboard", async (req, res) => {
-  if (!req.session.loggedIn) {
-    res.redirect("/");
-  } else {
-    try {
-      const roomData = await Room.findAll({
-        include: User,
-        where: { creator_id: req.session.userId },
-      });
-      const rooms = roomData.map((room) => room.get({ plain: true }));
+router.get('/browse', async (req, res) => {
+  try {
+    // const roomsData = await Room.findAll({ include: User });
+    // const rooms = roomsData.map((room) => room.get({ plain: true }));
+    const rooms = {};
+    const loggedIn = req.session.loggedIn;
 
-      res.render("dashboard", { rooms });
-    } catch (err) {
-      res.status(500).json(err);
-    }
+    res.render("browse", { rooms, loggedIn });
+  } catch (err) {
+    res.status(500).json(err);
   }
-});
+})
 
 module.exports = router;

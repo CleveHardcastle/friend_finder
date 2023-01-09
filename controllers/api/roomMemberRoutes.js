@@ -15,7 +15,7 @@ router.post('/', withAuth, async (req, res) => {
 
 router.delete('/:id', withAuth, async (req, res) => {
   try {
-    const rowsAffected = await roomMember.destroy({ where: { room_id: req.params.id, member_id: req.session.userId }});
+    const rowsAffected = await roomMember.destroy({ where: { id: req.params.id }});
 
     if (rowsAffected > 0) {
       res.status(200).end();

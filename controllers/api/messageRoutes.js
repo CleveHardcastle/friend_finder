@@ -33,6 +33,21 @@ message.put('/:id', withAuth, async (req, res) => {
   } catch (err) {
     res.status(400).json(err);
   }
+});
+
+message.delete('/:id', withAuth, async (req, res) => {
+  try {
+    const rowsAffected = await Message.destroy({
+      where: { id: req.params.id }
+    });
+    if (rowsAffected > 0) {
+      res.status(200).end();
+    } else {
+      res.status(404).end();
+    }
+  } catch (err) {
+    res.status(400).json(err);
+  }
 })
 
 
