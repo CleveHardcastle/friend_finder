@@ -34,11 +34,18 @@
           </div>
           <div class="menu-items">
             <li class="text-[#FFFFFF]"><a href="/">Home</a></li>
-            <li class="text-[#FFFFFF]"><a href="/profile">My Profile</a></li>
+            {{#if loggedIn}}
+            <li class="text-[#FFFFFF]"><a href="/profile/{{userId}}">My Profile</a></li>
+            <li class="text-[#FFFFFF]"><a href="/dashboard">My Dashboard</a></li>
+            {{/if}}
             <li class="text-[#FFFFFF]"><a href="/browse">Browse</a></li>
             <li class="text-[#FFFFFF]"><a href="/about">About Us</a></li>
+            {{#unless loggedIn}}
             <li class="text-[#FFFFFF]"><a href="/login">Login</a></li>
+            {{/unless}}
+            {{#if loggedIn}}
             <li class="text-[#FFFFFF]"><a href="/logout">Logout</a></li>
+            {{/if}}
           </div>
         </div>
       </div>
