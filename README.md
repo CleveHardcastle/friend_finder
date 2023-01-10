@@ -57,11 +57,10 @@ GNU General Public License v3.0
 ## Credit
 
 **Team Members:**
-- [wytseng](https://github.com/wytseng)
-- [wytseng](https://github.com/wytseng)
-- [wytseng](https://github.com/wytseng)
-- [wytseng](https://github.com/wytseng)
-- [wytseng](https://github.com/wytseng)
+- [Cleve](https://github.com/CleveHardcastle)
+- [Jaret](https://github.com/smudge121)
+- [Stephanie](https://github.com/wytseng)
+- [Travis](https://github.com/talexander91)
 
 **Technology Used**
 - Cloudinary
